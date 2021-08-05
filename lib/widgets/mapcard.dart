@@ -50,8 +50,6 @@ class _MapCardState extends State<MapCard> {
   @override
   void initState() {
     super.initState();
-    // If I want to change the marker icon:
-    // _setMarkerIcon();
     _locationData = widget.location;
     getData();
   }
@@ -82,8 +80,8 @@ class _MapCardState extends State<MapCard> {
               polygonId: PolygonId(i.toString()),
               points: polygonLatLngs,
               strokeWidth: 2,
-              strokeColor: Colors.yellow,
-              fillColor: Colors.yellow.withOpacity(0.15),
+              strokeColor: MapCard.riskColors[riskLevel],
+              fillColor: MapCard.riskColors[riskLevel].withOpacity(0.15),
             ),
           );
         }
