@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "217176843270",
+    "project_id": "test-cd013",
+    "storage_bucket": "test-cd013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217176843270:android:8c3a30d3fbc8566e818f87",
+        "android_client_info": {
+          "package_name": "com.example.hotspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217176843270-difnaom19lj4hpdbbbc7le8n8ba54gi2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl9nBawWSTFPjvsCVjaisZdPPU0Zlweiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217176843270-difnaom19lj4hpdbbbc7le8n8ba54gi2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217176843270:android:6cccf5fe426b9ba2818f87",
+        "android_client_info": {
+          "package_name": "com.example.myselamat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217176843270-difnaom19lj4hpdbbbc7le8n8ba54gi2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl9nBawWSTFPjvsCVjaisZdPPU0Zlweiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217176843270-difnaom19lj4hpdbbbc7le8n8ba54gi2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
