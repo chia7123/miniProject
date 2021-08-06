@@ -7,14 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MapCard extends StatefulWidget {
   final LocationData location;
-  static var riskColors = [Colors.green, Colors.orange, Colors.red];
-  static var riskLabels = ["LOW RISK", "MEDIUM RISK", "HIGH RISK"];
-  static var riskimage = [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png",
-    "https://img.icons8.com/ios-filled/452/low-risk.png",
-    "https://icon-library.com/images/high-risk-icon/high-risk-icon-0.jpg",
-  ];
-
   MapCard({@required this.location});
 
   @override
@@ -22,6 +14,14 @@ class MapCard extends StatefulWidget {
 }
 
 class _MapCardState extends State<MapCard> {
+  List<Color> riskColors = [Colors.green, Colors.orange, Colors.red];
+  List<String> riskLabels = ["LOW RISK", "MEDIUM RISK", "HIGH RISK"];
+  var riskimage = [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png",
+    "https://img.icons8.com/ios-filled/452/low-risk.png",
+    "https://icon-library.com/images/high-risk-icon/high-risk-icon-0.jpg",
+  ];
+
   List<DropdownMenuItem> items = [];
   String selectedValue = '';
   String _previewImageUrl = '';
@@ -57,7 +57,7 @@ class _MapCardState extends State<MapCard> {
     LatLng(4.326610390665372, 101.14343617111444),
     LatLng(4.315415246437441, 101.14251181483269),
     LatLng(4.317517482860365, 101.1523612216115),
-    LatLng(4.323155847429832, 101.12953998148441)
+    LatLng(4.323137125387374, 101.12983636558056)
   ];
 
   @override
@@ -94,13 +94,15 @@ class _MapCardState extends State<MapCard> {
               polygonId: PolygonId(i.toString()),
               points: polygonLatLngs,
               strokeWidth: 2,
-              strokeColor: MapCard.riskColors[riskLevel],
-              fillColor: MapCard.riskColors[riskLevel].withOpacity(0.15),
+              strokeColor: riskColors[riskLevel],
+              fillColor: riskColors[riskLevel].withOpacity(0.15),
             ),
           );
           if (_checkIfValidMarker(myLocation, polygonLatLngs)) {
-            myRiskLevel = riskLevel;
-            myCaseNo = caseNo;
+            setState(() {
+              myRiskLevel = riskLevel;
+              myCaseNo = caseNo;
+            });
           }
         }
       });
@@ -198,11 +200,11 @@ class _MapCardState extends State<MapCard> {
                       selectedValue = value.toString();
                       for (var i = 0; i < location.length; i++) {
                         if (selectedValue == location[i]) {
+                          print('selected = ' + location[i]);
                           myLocation = searchLocation[i];
                           getData();
-                          setState(() {
-                            
-                          });
+                          _markers.clear();
+                           _setMarkers(searchLocation[i]);
                         }
                       }
                     });
@@ -223,20 +225,24 @@ class _MapCardState extends State<MapCard> {
               child: Stack(
                 children: <Widget>[
                   GoogleMap(
-                      onMapCreated: _onMapCreated,
+                      //onMapCreated: _onMapCreated,
                       initialCameraPosition: CameraPosition(
                         target: myLocation,
-                        zoom: 16,
+                        zoom: 13.5,
                       ),
                       mapType: MapType.hybrid,
                       polygons: _polygons,
+                      markers: _markers,
                       myLocationEnabled: true,
                       onTap: (point) {
-                        if (_isMarker) {
+                        
                           setState(() {
+                            _markers.clear();
+                            myLocation = point;
+                            getData();
                             _setMarkers(point);
                           });
-                        }
+                        
                       }),
                 ],
               )),
@@ -244,8 +250,7 @@ class _MapCardState extends State<MapCard> {
               //result for search region
               margin: EdgeInsets.all(5.0),
               decoration: BoxDecoration(
-                  border: Border.all(
-                      color: MapCard.riskColors[myRiskLevel], width: 4),
+                  border: Border.all(color: riskColors[myRiskLevel], width: 4),
                   borderRadius: BorderRadius.circular(5.0)),
               child: Padding(
                   padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
@@ -255,9 +260,9 @@ class _MapCardState extends State<MapCard> {
                         "This location is under : ",
                       ),
                       Text(
-                        MapCard.riskLabels[myRiskLevel],
+                        riskLabels[myRiskLevel],
                         style: TextStyle(
-                            color: MapCard.riskColors[myRiskLevel],
+                            color: riskColors[myRiskLevel],
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold),
                       )
@@ -286,7 +291,7 @@ class _MapCardState extends State<MapCard> {
                   width: 60.0,
                   height: 60.0,
                   child: FittedBox(
-                    child: Image.network(MapCard.riskimage[myRiskLevel]),
+                    child: Image.network(riskimage[myRiskLevel]),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -295,7 +300,7 @@ class _MapCardState extends State<MapCard> {
                     child: Text(
                         "Hi, Barry, there have been " +
                             myCaseNo.toString() +
-                            " reported case(s) of covid-19 within a 1 km radius from your current location in the last 14 days.",
+                            " reported case(s) of covid-19 within a 1 km radius from this location in the last 14 days.",
                         style: TextStyle(color: Colors.white, fontSize: 12.0)))
               ],
             ),
