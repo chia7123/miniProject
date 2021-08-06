@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mysj/firebase.dart';
 import 'package:mysj/pages/profile.dart';
 import 'package:mysj/pages/questions.dart';
 import 'package:mysj/pages/home.dart';
@@ -30,7 +29,6 @@ class App extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => AppHome(),
-        // "/": (context) => FirebaseABC(),
         "/travelhistory": (context) => TravelHistory(),
         "/assesment": (context) => QuestionsPage(
               title: "Questions",
