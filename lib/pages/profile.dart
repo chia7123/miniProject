@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mysj/firstPage.dart';
 import 'package:mysj/widgets/custom_view.dart';
 import 'package:mysj/widgets/profile_profile_card.dart';
 
@@ -8,7 +10,7 @@ class ProfilePage extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.5,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(top: 10,left: 20),
+            margin: EdgeInsets.only(top: 10, left: 20),
             height: MediaQuery.of(context).size.height * 0.18,
             child: Align(
               alignment: Alignment.topLeft,
@@ -29,6 +31,15 @@ class ProfilePage extends StatelessWidget {
               riskStatus: 0,
             ),
           ),
+          TextButton.icon(
+              onPressed: () {
+                print('Sign out');
+                FirebaseAuth.instance.signOut();
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => FirstPage()));
+              },
+              icon: Icon(Icons.logout,color: Colors.red,),
+              label: Text('Logout',style: TextStyle(color: Colors.red),))
         ]);
   }
 }

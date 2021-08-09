@@ -125,8 +125,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return CustomView(height: 400.0, children: <Widget>[
       WelcomeBox(
-        name: "Bryan",
-        nearCases: 23,
+        nearCases: 20003,
         newCasesButton: () {},
         mcoButton: () => launch(
             'https://www.mkn.gov.my/web/ms/sop-perintah-kawalan-pergerakan/'),

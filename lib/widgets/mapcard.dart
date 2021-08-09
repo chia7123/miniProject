@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -165,7 +166,7 @@ class _MapCardState extends State<MapCard> {
     return Container(
       padding: EdgeInsets.all(10.0),
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.87,
+      height: MediaQuery.of(context).size.height * 0.86,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(18.0),
@@ -177,136 +178,147 @@ class _MapCardState extends State<MapCard> {
                 color: Color.fromRGBO(0, 0, 0, 0.24))
           ]),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          //search
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Container(
-              width: 330,
-              child: DropdownSearch<String>(
-                  mode: Mode.MENU,
-                  showSelectedItem: true,
-                  items: [
-                    'Taman Kampar Perdana',
-                    'Taman Bandar Baru',
-                    'Taman Bandar Baru Selatan',
-                    'Kampung Masjid',
-                    'Kampar Putra'
-                  ],
-                  label: "Select your location",
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = value.toString();
-                      for (var i = 0; i < location.length; i++) {
-                        if (selectedValue == location[i]) {
-                          print('selected = ' + location[i]);
-                          myLocation = searchLocation[i];
-                          getData();
-                          _markers.clear();
-                           _setMarkers(searchLocation[i]);
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            //search
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Container(
+                width: 330,
+                child: DropdownSearch<String>(
+                    mode: Mode.MENU,
+                    showSelectedItem: true,
+                    items: [
+                      'Taman Kampar Perdana',
+                      'Taman Bandar Baru',
+                      'Taman Bandar Baru Selatan',
+                      'Kampung Masjid',
+                      'Kampar Putra'
+                    ],
+                    label: "Select your location",
+                    onChanged: (value) {
+                      setState(() {
+                        selectedValue = value.toString();
+                        for (var i = 0; i < location.length; i++) {
+                          if (selectedValue == location[i]) {
+                            print('selected = ' + location[i]);
+                            myLocation = searchLocation[i];
+                            getData();
+                            _markers.clear();
+                            _setMarkers(searchLocation[i]);
+                          }
                         }
-                      }
-                    });
-                  },
-                  selectedItem: 'Choose a location'),
-            ),
-          ),
-          Container(
-              //map
-              margin: EdgeInsets.all(5.0),
-              width: 330.0,
-              height: MediaQuery.of(context).size.height * 0.52,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(10.0),
+                      });
+                    },
+                    selectedItem: 'Choose a location'),
               ),
-              child: Stack(
-                children: <Widget>[
-                  GoogleMap(
-                      //onMapCreated: _onMapCreated,
-                      initialCameraPosition: CameraPosition(
-                        target: myLocation,
-                        zoom: 13.5,
-                      ),
-                      mapType: MapType.hybrid,
-                      polygons: _polygons,
-                      markers: _markers,
-                      myLocationEnabled: true,
-                      onTap: (point) {
-                        
+            ),
+            Container(
+                //map
+                margin: EdgeInsets.all(5.0),
+                width: 330.0,
+                height: MediaQuery.of(context).size.height * 0.48,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    GoogleMap(
+                        //onMapCreated: _onMapCreated,
+                        initialCameraPosition: CameraPosition(
+                          target: myLocation,
+                          zoom: 13.5,
+                        ),
+                        mapType: MapType.hybrid,
+                        polygons: _polygons,
+                        markers: _markers,
+                        myLocationEnabled: true,
+                        onTap: (point) {
                           setState(() {
                             _markers.clear();
                             myLocation = point;
                             getData();
                             _setMarkers(point);
                           });
-                        
-                      }),
-                ],
-              )),
-          Container(
-              //result for search region
+                        }),
+                  ],
+                )),
+            Container(
+                //result for search region
+                margin: EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                    border:
+                        Border.all(color: riskColors[myRiskLevel], width: 4),
+                    borderRadius: BorderRadius.circular(5.0)),
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          "This location is under : ",
+                        ),
+                        Text(
+                          riskLabels[myRiskLevel],
+                          style: TextStyle(
+                              color: riskColors[myRiskLevel],
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ))),
+            Container(
+              //result for current location
               margin: EdgeInsets.all(5.0),
               decoration: BoxDecoration(
-                  border: Border.all(color: riskColors[myRiskLevel], width: 4),
-                  borderRadius: BorderRadius.circular(5.0)),
-              child: Padding(
-                  padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "This location is under : ",
-                      ),
-                      Text(
-                        riskLabels[myRiskLevel],
-                        style: TextStyle(
-                            color: riskColors[myRiskLevel],
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ))),
-          Container(
-            //result for current location
-            margin: EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(18.0),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      blurRadius: 10.0,
-                      spreadRadius: 1.0,
-                      offset: Offset(0.0, 3.0),
-                      color: Color.fromRGBO(0, 0, 0, 0.24))
-                ]),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: BoxDecoration(color: Colors.white),
-                  margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                  width: 60.0,
-                  height: 60.0,
-                  child: FittedBox(
-                    child: Image.network(riskimage[myRiskLevel]),
-                    fit: BoxFit.cover,
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(18.0),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        blurRadius: 10.0,
+                        spreadRadius: 1.0,
+                        offset: Offset(0.0, 3.0),
+                        color: Color.fromRGBO(0, 0, 0, 0.24))
+                  ]),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(color: Colors.white),
+                    margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                    width: 60.0,
+                    height: 60.0,
+                    child: FittedBox(
+                      child: Image.network(riskimage[myRiskLevel]),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Container(
-                    width: 220.0,
-                    child: Text(
-                        "Hi, Barry, there have been " +
-                            myCaseNo.toString() +
-                            " reported case(s) of covid-19 within a 1 km radius from this location in the last 14 days.",
-                        style: TextStyle(color: Colors.white, fontSize: 12.0)))
-              ],
-            ),
-          )
-        ],
-      ),
+                  StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(FirebaseAuth.instance.currentUser.uid)
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<DocumentSnapshot> snapshot) {
+                        if (snapshot.hasData) {
+                          final doc = snapshot.data;
+                          return Container(
+                              width: 220.0,
+                              child: Text(
+                                  "Hi, ${doc['name']}, there have been " +
+                                      myCaseNo.toString() +
+                                      " reported case(s) of covid-19 within a 1 km radius from this location in the last 14 days.",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12.0)));
+                        }
+                        return Text('no data');
+                      })
+                ],
+              ),
+            )
+          ]),
     );
   }
 }

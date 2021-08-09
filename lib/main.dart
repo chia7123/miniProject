@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mysj/authentication/auth.dart';
+import 'package:mysj/firstPage.dart';
 import 'package:mysj/pages/profile.dart';
 import 'package:mysj/pages/questions.dart';
 import 'package:mysj/pages/home.dart';
@@ -8,7 +10,6 @@ import 'package:mysj/widgets/bottom_nav_bar_items.dart';
 import 'package:flutter/services.dart';
 import 'package:mysj/widgets/checkin.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,9 +27,9 @@ class App extends StatelessWidget {
           primarySwatch: Colors.lightBlue,
           fontFamily: 'MazzardH-SemiBold'),
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
+      home: FirstPage(),
       routes: {
-        "/": (context) => AppHome(),
+        AuthScreen.routeName: (context) => AuthScreen(),
         "/travelhistory": (context) => TravelHistory(),
         "/assesment": (context) => QuestionsPage(
               title: "Questions",
@@ -41,11 +42,9 @@ class App extends StatelessWidget {
 }
 
 class AppHome extends StatefulWidget {
-  // AppHome({
-  //   Key? key,
-  // }) : super(key: key);
-
-  // final FirebaseApp app;
+  AppHome({
+    Key key,
+  }) : super(key: key);
 
   _AppHomeState createState() => _AppHomeState();
 }
@@ -56,13 +55,8 @@ class _AppHomeState extends State<AppHome> {
   void initState() {
     super.initState();
 
-    // Firebase sample
-    final DatabaseReference db = FirebaseDatabase.instance.reference();
-    db.child("sample").set('sample writing');
-    db.child('sample').once().then((result) => print('result = $result'));
-
     // Hide Android Status Bar and Navigation Bar
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    // SystemChrome.setEnabledSystemUIOverlays([]); 
 
     pages = [
       HomePage(

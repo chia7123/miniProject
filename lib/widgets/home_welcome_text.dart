@@ -1,15 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mysj/widgets/custom_icons.dart';
 
 class WelcomeBox extends StatelessWidget {
-  final String name;
   final int nearCases;
   final void Function() newCasesButton;
   final void Function() mcoButton;
 
   WelcomeBox(
-      {@required this.name,
-      @required this.nearCases,
+      {@required this.nearCases,
       @required this.newCasesButton,
       @required this.mcoButton});
 
@@ -65,34 +65,46 @@ class WelcomeBox extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          width: 380.0,
-          padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
-          child: Text(
-            "Hello ${this.name},\nthere are ${this.nearCases} new cases near you this week.",
-            style: TextStyle(
-              height: 1.5,
-              letterSpacing: 0.5,
-              color: Colors.white,
-              fontFamily: "MazzardH-SemiBold",
-              fontSize: 28.0,
-            ),
-          ),
-        ),
-        Container(
-            width: 350.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser.uid)
+            .snapshots(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasData) {
+            final doc = snapshot.data;
+            return Column(
               children: <Widget>[
-                InfoButton(CustomIcons.show_chart, "7,703", "new cases today",
-                    newCasesButton),
-                InfoButton(
-                    CustomIcons.shield, "MCO 3.0", "view guidelines", mcoButton)
+                Container(
+                  width: 380.0,
+                  padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+                  child: Text(
+                    "Hello ${doc['name']},\nthere are ${this.nearCases} new cases near you this week.",
+                    style: TextStyle(
+                      height: 1.5,
+                      letterSpacing: 0.5,
+                      color: Colors.white,
+                      fontFamily: "MazzardH-SemiBold",
+                      fontSize: 28.0,
+                    ),
+                  ),
+                ),
+                Container(
+                    width: 350.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        InfoButton(CustomIcons.show_chart, "7,703",
+                            "new cases today", newCasesButton),
+                        InfoButton(CustomIcons.shield, "MCO 3.0",
+                            "view guidelines", mcoButton)
+                      ],
+                    )),
               ],
-            )),
-      ],
-    );
+            );
+          }
+          return Text('no data');
+        });
   }
 }
