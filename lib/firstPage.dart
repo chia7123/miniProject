@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mysj/authentication/auth.dart';
 import 'package:mysj/authentication/initialProfile.dart';
 import 'package:mysj/main.dart';
+import 'package:mysj/pages/admin.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({Key key}) : super(key: key);
@@ -22,17 +23,20 @@ class FirstPage extends StatelessWidget {
               return StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('users')
-                    .doc(FirebaseAuth.instance.currentUser?.uid)
+                    .doc(FirebaseAuth.instance.currentUser.uid)
                     .snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.data == null) {
-                    return Container();
-                  }
-
-                  if (snapshot.data['name'] == null) {
+                builder: (BuildContext context,
+                    AsyncSnapshot<DocumentSnapshot> snapshot) {
+                      final doc = snapshot.data ;
+                  if (doc['name'] == 'admin') {
+                    return AdminPage();
+                  } else if (doc['name'] == null) {
                     return InitialProfileScreen();
-                  } else {
+                  } else if (doc['name'] != 'admin' &&
+                      snapshot.data['name'] != null) {
                     return AppHome();
+                  } else {
+                    return Text('Error');
                   }
                 },
               );

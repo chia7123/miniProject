@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mysj/authentication/authForm.dart';
 import 'package:mysj/authentication/initialProfile.dart';
+import 'package:mysj/firstPage.dart';
 import 'package:mysj/main.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _AuthScreenState extends State<AuthScreen> {
           password: password,
         );
         Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (ctx) => AppHome()));
+            .pushReplacement(MaterialPageRoute(builder: (ctx) => FirstPage()));
       }
       authResult = await _auth.createUserWithEmailAndPassword(
         email: email,

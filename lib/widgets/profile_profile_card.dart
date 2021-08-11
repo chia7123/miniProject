@@ -38,13 +38,13 @@ class ProfileCard extends StatelessWidget {
               return Column(
                 children: <Widget>[
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         margin: EdgeInsets.only(right: 25.0),
                         child: CircleAvatar(
-                          radius: 50.0,
+                          radius: 40.0,
                           backgroundImage: NetworkImage(
                              doc['imageUrl']),
                           backgroundColor: Colors.transparent,
@@ -74,7 +74,7 @@ class ProfileCard extends StatelessWidget {
                                         fontSize: 11.5,
                                         height: 1.6)),
                                 Container(
-                                  width: 200,
+                                  width: 180,
                                   padding: EdgeInsets.only(top: 3.0),
                                   child: Text(
                                     doc['id'],
