@@ -87,7 +87,7 @@ class LatestNews extends StatelessWidget {
         SizedBox(height: 10.0),
         NewsItem(
             height: 440.0,
-            timestamp: "8 June 2021 @ 6:43 p.m.",
+            timestamp: "10 August 2021 @ 7:02 p.m.",
             textWidget: RichText(
                 text: TextSpan(children: <TextSpan>[
               TextSpan(
@@ -110,11 +110,11 @@ class LatestNews extends StatelessWidget {
         SizedBox(height: 20.0),
         NewsItem(
             height: 470.0,
-            timestamp: "8 June 2021 @ 6:43 p.m.",
+            timestamp: "10 August 2021 @ 7:02 p.m.",
             textWidget: RichText(
                 text: TextSpan(children: <TextSpan>[
               TextSpan(
-                  text: "Pecahan kes mengikut negeri setkat 8 June 2021",
+                  text: "Pecahan kes mengikut negeri setkat 10 August 2021",
                   style: TextStyle(
                       fontFamily: "MazzardH-SemiBold",
                       fontSize: 14.0,
@@ -127,11 +127,11 @@ class LatestNews extends StatelessWidget {
         SizedBox(height: 20.0),
         NewsItem(
             height: 460.0,
-            timestamp: "8 June 2021 @ 6:43 p.m.",
+            timestamp: "10 August 2021 @ 7:02 p.m.",
             textWidget: RichText(
                 text: TextSpan(children: <TextSpan>[
               TextSpan(
-                  text: "COVID-19 in Malaysia as of June 2021",
+                  text: "COVID-19 in Malaysia as of August 2021",
                   style: TextStyle(
                       fontFamily: "MazzardH-SemiBold",
                       fontSize: 14.0,

@@ -1,7 +1,8 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mysj/authentication/auth.dart';
+import 'package:mysj/authentication/initialProfile.dart';
 import 'package:mysj/main.dart';
 
 class FirstPage extends StatelessWidget {
@@ -18,7 +19,23 @@ class FirstPage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasData) {
-              return AppHome();
+              return StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(FirebaseAuth.instance.currentUser?.uid)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.data == null) {
+                    return Container();
+                  }
+
+                  if (snapshot.data['name'] == null) {
+                    return InitialProfileScreen();
+                  } else {
+                    return AppHome();
+                  }
+                },
+              );
             } else
               return AuthScreen();
           }),

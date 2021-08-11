@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mysj/authentication/auth.dart';
 import 'package:mysj/firstPage.dart';
@@ -56,7 +57,7 @@ class _AppHomeState extends State<AppHome> {
     super.initState();
 
     // Hide Android Status Bar and Navigation Bar
-    // SystemChrome.setEnabledSystemUIOverlays([]); 
+    // SystemChrome.setEnabledSystemUIOverlays([]);
 
     pages = [
       HomePage(
@@ -109,8 +110,11 @@ class _AppHomeState extends State<AppHome> {
           ),
           backgroundColor: Color(0xff4f8eff),
           foregroundColor: Colors.white,
-          onPressed: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (ctx) => CheckIn())),
+          onPressed: () {
+            FirebaseAuth.instance.signOut();
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (ctx) => CheckIn()));
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),

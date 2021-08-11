@@ -10,9 +10,9 @@ import 'package:mysj/main.dart';
 
 class InitialProfileScreen extends StatefulWidget {
   static const routeName = '/initialProfile';
-  final String email;
+  // final String email;
 
-  InitialProfileScreen(this.email);
+  // InitialProfileScreen(this.email);
 
   @override
   _InitialProfileScreenState createState() => _InitialProfileScreenState();
@@ -38,7 +38,7 @@ class _InitialProfileScreenState extends State<InitialProfileScreen> {
     super.initState();
     fToast = FToast();
     fToast.init(context);
-    email.value = TextEditingValue(text: widget.email);
+    // email.value = TextEditingValue(text: widget.email);
   }
 
   _showToast(String text) {
@@ -85,7 +85,7 @@ class _InitialProfileScreenState extends State<InitialProfileScreen> {
         'phone': phone.text,
         'address': add.text,
         'imageUrl': url,
-        'email': email.text,
+        // 'email': email.text,
         'id': user.uid,
         'ic': ic.text
       }).whenComplete(() => {
@@ -193,14 +193,14 @@ class _InitialProfileScreenState extends State<InitialProfileScreen> {
                               ),
                               controller: add,
                             ),
-                            TextFormField(
-                              key: ValueKey('Email'),
-                              readOnly: true,
-                              decoration: InputDecoration(
-                                labelText: '5. Email',
-                              ),
-                              controller: email,
-                            ),
+                            // TextFormField(
+                            //   key: ValueKey('Email'),
+                            //   readOnly: true,
+                            //   decoration: InputDecoration(
+                            //     labelText: '5. Email',
+                            //   ),
+                            //   controller: email,
+                            // ),
                           ],
                         ),
                       ),

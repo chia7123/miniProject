@@ -32,8 +32,8 @@ class _AuthScreenState extends State<AuthScreen> {
           email: email,
           password: password,
         );
-       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (ctx) => AppHome()));
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (ctx) => AppHome()));
       }
       authResult = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -44,9 +44,9 @@ class _AuthScreenState extends State<AuthScreen> {
           .doc(authResult.user.uid)
           .set({
         'email': email,
+        'name': null,
       });
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (ctx) => InitialProfileScreen(email)));
+      
     } catch (e) {
       var message = e.toString();
       setState(() {
@@ -61,7 +61,6 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  
       body: AuthForm(_submitAuthForm, _isLoading),
     );
   }
