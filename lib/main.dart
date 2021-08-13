@@ -1,16 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mysj/authentication/auth.dart';
-import 'package:mysj/firstPage.dart';
 import 'package:mysj/pages/profile.dart';
 import 'package:mysj/pages/questions.dart';
 import 'package:mysj/pages/home.dart';
 import 'package:mysj/data/question_sets.dart';
 import 'package:mysj/pages/travelhistory.dart';
 import 'package:mysj/widgets/bottom_nav_bar_items.dart';
-import 'package:flutter/services.dart';
 import 'package:mysj/widgets/checkin.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'authentication/welcome.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,14 +21,14 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'MySelamat',
       theme: ThemeData(
+          primaryColor: Color.fromARGB(255, 76, 123, 237),
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
-          primarySwatch: Colors.lightBlue,
+          primarySwatch: Theme.of(context).primaryColor,
           fontFamily: 'MazzardH-SemiBold'),
       debugShowCheckedModeBanner: false,
-      home: FirstPage(),
+      home: Welcome(),
       routes: {
-        AuthScreen.routeName: (context) => AuthScreen(),
         "/travelhistory": (context) => TravelHistory(),
         "/assesment": (context) => QuestionsPage(
               title: "Questions",
@@ -111,7 +109,6 @@ class _AppHomeState extends State<AppHome> {
           backgroundColor: Color(0xff4f8eff),
           foregroundColor: Colors.white,
           onPressed: () {
-            FirebaseAuth.instance.signOut();
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (ctx) => CheckIn()));
           },

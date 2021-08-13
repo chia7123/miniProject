@@ -21,7 +21,6 @@ class InitialProfileScreen extends StatefulWidget {
 class _InitialProfileScreenState extends State<InitialProfileScreen> {
   final user = FirebaseAuth.instance.currentUser;
   final _formKey = GlobalKey<FormState>();
-  String _selectedUser;
   CollectionReference userInfo = FirebaseFirestore.instance.collection('users');
   File _userImageFile;
 
@@ -38,7 +37,6 @@ class _InitialProfileScreenState extends State<InitialProfileScreen> {
     super.initState();
     fToast = FToast();
     fToast.init(context);
-    // email.value = TextEditingValue(text: widget.email);
   }
 
   _showToast(String text) {

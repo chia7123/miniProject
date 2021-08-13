@@ -15,7 +15,7 @@ class WelcomeBox extends StatelessWidget {
 
   // ignore: non_constant_identifier_names
   Widget InfoButton(
-      IconData icon, String title, String subtitle, void Function() callback) {
+      IconData icon, String title, void Function() callback) {
     return ElevatedButton(
       style: ButtonStyle(
           elevation: MaterialStateProperty.all<double>(0.0),
@@ -24,9 +24,10 @@ class WelcomeBox extends StatelessWidget {
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0)))),
       child: SizedBox(
-        width: 138.0,
+        width: 230.0,
         height: 60.0,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(right: 10.0),
@@ -36,26 +37,13 @@ class WelcomeBox extends StatelessWidget {
                 size: 30.0,
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Color(0xff3166fd),
-                    fontFamily: "MazzardH-Bold",
-                    fontSize: 20.0,
-                  ),
-                ),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                      fontFamily: "MazzardH-SemiBold",
-                      fontSize: 12.0,
-                      height: 1.0),
-                )
-              ],
+            Text(
+              title,
+              style: TextStyle(
+                color: Color(0xff3166fd),
+                fontFamily: "MazzardH-Bold",
+                fontSize: 20.0,
+              ),
             )
           ],
         ),
@@ -92,15 +80,8 @@ class WelcomeBox extends StatelessWidget {
                 ),
                 Container(
                     width: 350.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        InfoButton(CustomIcons.show_chart, "7,703",
-                            "new cases today", newCasesButton),
-                        InfoButton(CustomIcons.shield, "MCO 3.0",
-                            "view guidelines", mcoButton)
-                      ],
-                    )),
+                    child: InfoButton(CustomIcons.shield, "MCO 3.0 guidelines",
+                         mcoButton)),
               ],
             );
           }

@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mysj/authentication/auth.dart';
-import 'package:mysj/authentication/initialProfile.dart';
+import 'package:mysj/authentication/login.dart';
 import 'package:mysj/main.dart';
 import 'package:mysj/pages/admin.dart';
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({Key key}) : super(key: key);
+class Wrapper extends StatelessWidget {
+  const Wrapper({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +26,18 @@ class FirstPage extends StatelessWidget {
                     .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<DocumentSnapshot> snapshot) {
-                      final doc = snapshot.data ;
-                  if (doc['name'] == 'admin') {
-                    return AdminPage();
-                  } else if (doc['name'] == null) {
-                    return InitialProfileScreen();
-                  } else if (doc['name'] != 'admin' &&
-                      snapshot.data['name'] != null) {
-                    return AppHome();
-                  } else {
-                    return Text('Error');
+                  DocumentSnapshot<Object> doc = snapshot.data;
+                  if (doc == null) {
+                    return CircularProgressIndicator();
                   }
+                  if (doc['name'] != 'admin') {
+                    return AppHome();
+                  } else
+                    return AdminPage();
                 },
               );
             } else
-              return AuthScreen();
+              return Login();
           }),
     );
   }
