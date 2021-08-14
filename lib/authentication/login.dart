@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mysj/authentication/firstPage.dart';
+import 'package:mysj/authentication/wrapper.dart';
 
 class Login extends StatefulWidget {
   final Function toggleScreen;
