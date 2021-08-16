@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mysj/authentication/login.dart';
+import 'package:mysj/authentication/welcome.dart';
 import 'package:mysj/main.dart';
 import 'package:mysj/pages/admin.dart';
 
@@ -30,14 +31,14 @@ class Wrapper extends StatelessWidget {
                   if (doc == null) {
                     return CircularProgressIndicator();
                   }
-                  if (doc['name'] != 'admin') {
-                    return AppHome();
-                  } else
+                  if (doc['name'] == 'admin') {
                     return AdminPage();
+                  } else
+                    return AppHome();
                 },
               );
             } else
-              return Login();
+              return Welcome();
           }),
     );
   }
