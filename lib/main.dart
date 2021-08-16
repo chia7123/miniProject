@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mysj/pages/profile.dart';
+import 'package:mysj/pages/qrscan.dart';
 import 'package:mysj/pages/questions.dart';
 import 'package:mysj/pages/home.dart';
 import 'package:mysj/data/question_sets.dart';
 import 'package:mysj/pages/travelhistory.dart';
 import 'package:mysj/widgets/bottom_nav_bar_items.dart';
-import 'package:mysj/widgets/checkin.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'authentication/welcome.dart';
@@ -110,7 +110,7 @@ class _AppHomeState extends State<AppHome> {
           foregroundColor: Colors.white,
           onPressed: () {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (ctx) => CheckIn()));
+            .push(MaterialPageRoute(builder: (context) => ScanPage()));
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
