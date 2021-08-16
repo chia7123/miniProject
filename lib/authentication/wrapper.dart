@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mysj/authentication/initialProfile.dart';
 import 'package:mysj/authentication/login.dart';
 import 'package:mysj/authentication/welcome.dart';
 import 'package:mysj/main.dart';
@@ -30,6 +31,9 @@ class Wrapper extends StatelessWidget {
                   DocumentSnapshot<Object> doc = snapshot.data;
                   if (doc == null) {
                     return CircularProgressIndicator();
+                  }
+                  if(doc['name']==''){
+                    return InitialProfileScreen();
                   }
                   if (doc['name'] == 'admin') {
                     return AdminPage();

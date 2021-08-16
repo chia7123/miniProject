@@ -2,10 +2,9 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mysj/authentication/signup_image_picker.dart';
+import 'package:mysj/authentication/wrapper.dart';
 import 'package:mysj/main.dart';
 
 class InitialProfileScreen extends StatefulWidget {
@@ -69,27 +68,17 @@ class _InitialProfileScreenState extends State<InitialProfileScreen> {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
 
-    final imageStorage = FirebaseStorage.instance
-        .ref()
-        .child('user_profile_image')
-        .child(user.uid + '.jpg');
-
-    await imageStorage.putFile(_userImageFile);
-    final url = await imageStorage.getDownloadURL();
-
     if (isValid) {
       userInfo.doc(user.uid).update({
         'name': name.text,
         'phone': phone.text,
         'address': add.text,
-        'imageUrl': url,
-        // 'email': email.text,
         'id': user.uid,
         'ic': ic.text
       }).whenComplete(() => {
             _showToast('Sign up sucessful'),
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => AppHome()))
+                context, MaterialPageRoute(builder: (context) => Wrapper()))
           });
     }
   }
@@ -134,7 +123,6 @@ class _InitialProfileScreenState extends State<InitialProfileScreen> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            SignUpImagePicker(_pickedImage),
                             SizedBox(
                               height: 10,
                             ),
@@ -191,14 +179,7 @@ class _InitialProfileScreenState extends State<InitialProfileScreen> {
                               ),
                               controller: add,
                             ),
-                            // TextFormField(
-                            //   key: ValueKey('Email'),
-                            //   readOnly: true,
-                            //   decoration: InputDecoration(
-                            //     labelText: '5. Email',
-                            //   ),
-                            //   controller: email,
-                            // ),
+                           
                           ],
                         ),
                       ),

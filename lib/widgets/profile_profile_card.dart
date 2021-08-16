@@ -42,12 +42,15 @@ class ProfileCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
+                        padding: EdgeInsets.all(25),
                         margin: EdgeInsets.only(right: 25.0),
-                        child: CircleAvatar(
-                          radius: 40.0,
-                          backgroundImage: NetworkImage(
-                             doc['imageUrl']),
-                          backgroundColor: Colors.transparent,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue,
+                        ),
+                        child: Text(
+                          "${doc['name'].substring(0, 1).toUpperCase()}",
+                          style: TextStyle(fontSize: 30, color: Colors.white),
                         ),
                       ),
                       Column(

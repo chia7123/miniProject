@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mysj/authentication/initialProfile.dart';
+
 class SignUp extends StatefulWidget {
   final Function toggleScreen;
   const SignUp({Key key, this.toggleScreen}) : super(key: key);
@@ -49,7 +50,7 @@ class _SignUpState extends State<SignUp> {
           .doc(authResult.user.uid)
           .set({
         'email': email,
-        'name': ' ',
+        'name': '',
       });
     } on SocketException {
       setLoading(false);
@@ -144,11 +145,14 @@ class _SignUpState extends State<SignUp> {
                     if (_formkey.currentState.validate()) {
                       await signup(_emailController.text.trim(),
                               _passwordController.text.trim())
-                          .whenComplete(() => Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      InitialProfileScreen())));
+                          .whenComplete(() => {
+                                Navigator.pop(context),
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            InitialProfileScreen())),
+                              });
                     }
                   },
                   height: 50,
