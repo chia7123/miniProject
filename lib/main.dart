@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mysj/authentication/wrapper.dart';
 import 'package:mysj/pages/profile.dart';
 import 'package:mysj/pages/questions.dart';
 import 'package:mysj/pages/home.dart';
@@ -27,7 +28,7 @@ class App extends StatelessWidget {
           primarySwatch: Theme.of(context).primaryColor,
           fontFamily: 'MazzardH-SemiBold'),
       debugShowCheckedModeBanner: false,
-      home: Welcome(),
+      home: Wrapper(),
       routes: {
         "/travelhistory": (context) => TravelHistory(),
         "/assesment": (context) => QuestionsPage(

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mysj/authentication/welcome.dart';
+import 'package:mysj/authentication/wrapper.dart';
 import 'package:mysj/widgets/custom_view.dart';
 import 'package:mysj/widgets/profile_profile_card.dart';
 
@@ -73,7 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 _showToast("Sign Out successful");
                 FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => Welcome()));
+                    MaterialPageRoute(builder: (context) => Wrapper()));
               },
               icon: Icon(Icons.logout,color: Colors.red,),
               label: Text('Logout',style: TextStyle(color: Colors.red),))
