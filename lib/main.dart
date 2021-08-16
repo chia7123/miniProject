@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mysj/pages/profile.dart';
+import 'package:mysj/pages/qrscan.dart';
 import 'package:mysj/pages/questions.dart';
 import 'package:mysj/pages/home.dart';
 import 'package:mysj/data/question_sets.dart';
@@ -110,7 +111,7 @@ class _AppHomeState extends State<AppHome> {
           foregroundColor: Colors.white,
           onPressed: () {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (ctx) => CheckIn()));
+                .push(MaterialPageRoute(builder: (ctx) => ScanPage()));
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
