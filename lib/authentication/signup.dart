@@ -51,6 +51,7 @@ class _SignUpState extends State<SignUp> {
           .set({
         'email': email,
         'name': '',
+        'riskStatus':0,
       });
     } on SocketException {
       setLoading(false);

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:mysj/pages/hotspot.dart';
+import 'package:mysj/pages/question.dart';
 import 'package:mysj/widgets/custom_view.dart';
 import 'package:mysj/widgets/home_latest_news.dart';
 import 'package:mysj/widgets/home_welcome_text.dart';
-import 'package:mysj/widgets/home_quick_actions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
-  // final void Function() newCasesCallback;
-  final List<void Function()> quickActionsCallbacks;
+ 
 
-  HomePage({@required this.quickActionsCallbacks});
+ 
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -103,7 +102,12 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               ActionButton(Icons.assignment, "Assessment", Colors.blueAccent,
-                  widget.quickActionsCallbacks[0]),
+                  (){
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) => QuestionPage()));
+                  }),
               ActionButton(Icons.location_on, "Hotspots", Colors.orangeAccent,
                   () async {
                 await _checkLocationPermission();

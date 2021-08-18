@@ -3,13 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
-  final int riskStatus;
-  final String vaccine;
+ 
 
   static var riskColors = [Colors.green, Colors.orange, Colors.red];
-  static var riskLabels = ["LOW RISK", "SUSPECTED", "HIGH RISK"];
+  static var riskLabels = ["LOW RISK", "MEDIUM RISK", "HIGH RISK"];
 
-  ProfileCard({@required this.riskStatus, this.vaccine});
+  ProfileCard();
 
   Widget build(BuildContext context) {
     return Container(
@@ -113,12 +112,12 @@ class ProfileCard extends StatelessWidget {
                     width: 110.0,
                     height: 28.0,
                     decoration: BoxDecoration(
-                        color: riskColors[riskStatus],
+                        color: riskColors[doc['riskStatus']],
                         borderRadius: BorderRadius.circular(50.0)),
                     child: Transform.translate(
                       offset: Offset(0, 1.0),
                       child: Text(
-                        riskLabels[riskStatus],
+                        riskLabels[doc['riskStatus']],
                         style: TextStyle(color: Colors.white, fontSize: 14.0),
                       ),
                     ),

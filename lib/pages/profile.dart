@@ -66,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Padding(
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 18.0),
             child: ProfileCard(
-              riskStatus: 0,
+             
             ),
           ),
           TextButton.icon(

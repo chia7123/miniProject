@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mysj/authentication/wrapper.dart';
 import 'package:mysj/pages/profile.dart';
-import 'package:mysj/pages/questions.dart';
 import 'package:mysj/pages/home.dart';
 import 'package:mysj/data/question_sets.dart';
 import 'package:mysj/pages/travelhistory.dart';
@@ -31,11 +30,6 @@ class App extends StatelessWidget {
       home: Wrapper(),
       routes: {
         "/travelhistory": (context) => TravelHistory(),
-        "/assesment": (context) => QuestionsPage(
-              title: "Questions",
-              subtitle: "Daily Health Assessment",
-              questions: healthAssessmentQuestionSet(),
-            )
       },
     );
   }
@@ -58,18 +52,7 @@ class _AppHomeState extends State<AppHome> {
     // Hide Android Status Bar and Navigation Bar
     // SystemChrome.setEnabledSystemUIOverlays([]);
 
-    pages = [
-      HomePage(
-        quickActionsCallbacks: [
-          () {
-            Navigator.pushNamed(context, '/assesment');
-          },
-          () {},
-          () {},
-        ],
-      ),
-      ProfilePage()
-    ];
+    pages = [HomePage(), ProfilePage()];
   }
 
   int _selectedPageIndex = 0;
