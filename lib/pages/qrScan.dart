@@ -1,7 +1,7 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:mysj/widgets/checkin.dart';
+import 'package:myselamat/widgets/checkin.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';

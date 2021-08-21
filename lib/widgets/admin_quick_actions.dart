@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mysj/widgets/update_hotspot.dart';
+import 'package:myselamat/widgets/update_hotspot.dart';
 
 class AdminQuickActions extends StatelessWidget {
   // ignore: non_constant_identifier_names

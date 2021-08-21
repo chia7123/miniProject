@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mysj/authentication/welcome.dart';
-import 'package:mysj/widgets/admin_quick_actions.dart';
+import 'package:myselamat/authentication/welcome.dart';
+import 'package:myselamat/widgets/admin_quick_actions.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({Key key}) : super(key: key);
@@ -43,6 +43,7 @@ class _AdminPageState extends State<AdminPage> {
       toastDuration: Duration(seconds: 2),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

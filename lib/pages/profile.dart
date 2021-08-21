@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mysj/authentication/welcome.dart';
-import 'package:mysj/authentication/wrapper.dart';
-import 'package:mysj/widgets/custom_view.dart';
-import 'package:mysj/widgets/profile_profile_card.dart';
+import 'package:myselamat/authentication/wrapper.dart';
+import 'package:myselamat/widgets/custom_view.dart';
+import 'package:myselamat/widgets/profile_profile_card.dart';
+//import 'package:myselamat/authentication/welcome.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -43,6 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
       toastDuration: Duration(seconds: 2),
     );
   }
+
   Widget build(BuildContext context) {
     return CustomView(
         height: MediaQuery.of(context).size.height * 0.5,
@@ -65,9 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 18.0),
-            child: ProfileCard(
-             
-            ),
+            child: ProfileCard(),
           ),
           TextButton.icon(
               onPressed: () {
@@ -76,8 +75,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => Wrapper()));
               },
-              icon: Icon(Icons.logout,color: Colors.red,),
-              label: Text('Logout',style: TextStyle(color: Colors.red),))
+              icon: Icon(
+                Icons.logout,
+                color: Colors.red,
+              ),
+              label: Text(
+                'Logout',
+                style: TextStyle(color: Colors.red),
+              ))
         ]);
   }
 }

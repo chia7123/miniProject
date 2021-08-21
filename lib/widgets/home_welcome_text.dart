@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mysj/widgets/custom_icons.dart';
+import 'package:myselamat/widgets/custom_icons.dart';
 
 class WelcomeBox extends StatelessWidget {
   final int nearCases;
@@ -14,8 +14,7 @@ class WelcomeBox extends StatelessWidget {
       @required this.mcoButton});
 
   // ignore: non_constant_identifier_names
-  Widget InfoButton(
-      IconData icon, String title, void Function() callback) {
+  Widget InfoButton(IconData icon, String title, void Function() callback) {
     return ElevatedButton(
       style: ButtonStyle(
           elevation: MaterialStateProperty.all<double>(0.0),
@@ -80,8 +79,8 @@ class WelcomeBox extends StatelessWidget {
                 ),
                 Container(
                     width: 350.0,
-                    child: InfoButton(CustomIcons.shield, "MCO 3.0 guidelines",
-                         mcoButton)),
+                    child: InfoButton(
+                        CustomIcons.shield, "MCO 3.0 guidelines", mcoButton)),
               ],
             );
           }

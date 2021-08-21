@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
- 
-
   static var riskColors = [Colors.green, Colors.orange, Colors.red];
   static var riskLabels = ["LOW RISK", "MEDIUM RISK", "HIGH RISK"];
 
@@ -40,64 +38,80 @@ class ProfileCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(25),
-                        margin: EdgeInsets.only(right: 25.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blue,
-                        ),
-                        child: Text(
-                          "${doc['name'].substring(0, 1).toUpperCase()}",
-                          style: TextStyle(fontSize: 30, color: Colors.white),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              left: 25, right: 25, top: 30, bottom: 25),
+                          //margin: EdgeInsets.only(right: 25.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blue,
+                          ),
+                          //color: Colors.amber,
+                          child: Text(
+                            "${doc['name'].substring(0, 1).toUpperCase()}",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 35,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(doc['name'],
-                              style: TextStyle(fontSize: 20.0, height: 1.4)),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text("IC No.",
-                                    style: TextStyle(
-                                        color: Color(0xff757575),
-                                        fontSize: 11.5,
-                                        height: 1.8)),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 3.0),
-                                  child: Text(doc['ic']),
-                                ),
-                                Text("MySej ID",
-                                    style: TextStyle(
-                                        color: Color(0xff757575),
-                                        fontSize: 11.5,
-                                        height: 1.6)),
-                                Container(
-                                  width: 180,
-                                  padding: EdgeInsets.only(top: 3.0),
-                                  child: Text(
-                                    doc['id'],
-                                    softWrap: true,
+                      Expanded(
+                        flex: 1,
+                        child: Container(),
+                      ),
+                      Expanded(
+                        flex: 7,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(doc['name'],
+                                style: TextStyle(fontSize: 20.0, height: 1.4)),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text("IC No.",
+                                      style: TextStyle(
+                                          color: Color(0xff757575),
+                                          fontSize: 11.5,
+                                          height: 1.8)),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.0),
+                                    child: Text(doc['ic']),
                                   ),
-                                ),
-                                Text("Address",
-                                    style: TextStyle(
-                                        color: Color(0xff757575),
-                                        fontSize: 11.5,
-                                        height: 1.6)),
-                                Container(
-                                  width: 200,
-                                  padding: EdgeInsets.only(top: 3.0),
-                                  child: Text(
-                                    doc['address'],
-                                    softWrap: true,
+                                  Text("MySej ID",
+                                      style: TextStyle(
+                                          color: Color(0xff757575),
+                                          fontSize: 11.5,
+                                          height: 1.6)),
+                                  Container(
+                                    width: 180,
+                                    padding: EdgeInsets.only(top: 3.0),
+                                    child: Text(
+                                      doc['id'],
+                                      softWrap: true,
+                                    ),
                                   ),
-                                ),
-                              ])
-                        ],
+                                  Text("Address",
+                                      style: TextStyle(
+                                          color: Color(0xff757575),
+                                          fontSize: 11.5,
+                                          height: 1.6)),
+                                  Container(
+                                    width: 200,
+                                    padding: EdgeInsets.only(top: 3.0),
+                                    child: Text(
+                                      doc['address'],
+                                      softWrap: true,
+                                    ),
+                                  ),
+                                ])
+                          ],
+                        ),
                       ),
                     ],
                   ),

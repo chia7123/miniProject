@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mysj/authentication/initialProfile.dart';
+import 'package:myselamat/authentication/initialProfile.dart';
 
 class SignUp extends StatefulWidget {
   final Function toggleScreen;
@@ -51,7 +51,7 @@ class _SignUpState extends State<SignUp> {
           .set({
         'email': email,
         'name': '',
-        'riskStatus':0,
+        'riskStatus': 0,
       });
     } on SocketException {
       setLoading(false);

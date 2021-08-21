@@ -7,6 +7,8 @@ class CheckIn extends StatelessWidget {
   // const CheckIn({Key? key}) : super(key: key);
   final String date, time, location;
   final DateFormat dateFormatter = DateFormat('dd MMM, yyyy');
+  static var riskColors = [Colors.green, Colors.orange, Colors.red];
+  static var riskLabels = ["LOW RISK", "MEDIUM RISK", "HIGH RISK"];
 
   CheckIn({
     @required this.date,
@@ -39,7 +41,7 @@ class CheckIn extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 20),
                     elevation: 30,
                     child: Container(
-                      height: 400,
+                      height: MediaQuery.of(context).size.height * 0.6,
                       child: Stack(
                         children: [
                           Column(
@@ -48,6 +50,47 @@ class CheckIn extends StatelessWidget {
                               Flexible(
                                 flex: 2,
                                 child: Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                              top: 10, bottom: 10),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      'https://thumbs.dreamstime.com/b/white-check-mark-icon-blue-background-tick-symbol-vector-illustration-isolated-143684069.jpg'))),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Column(
+                                          children: <Widget>[
+                                            Text(
+                                              'Check-in Sucess!',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Thank you!',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(30),
@@ -59,6 +102,190 @@ class CheckIn extends StatelessWidget {
                               Flexible(
                                 flex: 3,
                                 child: Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                        margin:
+                                            EdgeInsets.only(top: 15, bottom: 8),
+                                        child: Text(
+                                          'Check-in Info',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Column(
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                Text(
+                                                  'Name:',
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                Text(
+                                                  doc['name'],
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    child: Text(
+                                                      'Location:',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      'No. Telefon:',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                Expanded(
+                                                  child: Text(
+                                                    this.location,
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    doc['phone'],
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    child: Text(
+                                                      'Date:',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      'Time:',
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                Expanded(
+                                                  child: Text(
+                                                    dateFormatter
+                                                        .format(DateTime.parse(
+                                                            this.date))
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    this.time,
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: Row(children: <Widget>[
+                                                Expanded(
+                                                  child: Text(
+                                                    'Risk Level',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ]),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                color: riskColors[
+                                                    doc['riskStatus']],
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: Text(
+                                                riskLabels[doc['riskStatus']],
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(30),
                                     color: Colors.white,
@@ -66,194 +293,6 @@ class CheckIn extends StatelessWidget {
                                 ),
                               )
                             ],
-                          ),
-                          Positioned(
-                              child: Container(
-                            margin: EdgeInsets.only(top: 10),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://thumbs.dreamstime.com/b/white-check-mark-icon-blue-background-tick-symbol-vector-illustration-isolated-143684069.jpg'))),
-                            height: 80,
-                          )),
-                          Positioned(
-                            top: 100,
-                            left: 80,
-                            right: 80,
-                            child: Text(
-                              'Check-in Sucess! Thank You!',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 170,
-                            left: 80,
-                            right: 80,
-                            child: Text(
-                              'Check-in Info',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 200,
-                            left: 10,
-                            child: Text(
-                              'Name:',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 220,
-                            left: 10,
-                            child: Text(
-                              doc['name'],
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 250,
-                            left: 10,
-                            child: Text(
-                              'Location:',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 270,
-                            left: 10,
-                            child: Text(
-                              this.location,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 300,
-                            left: 10,
-                            child: Text(
-                              'Date:',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 320,
-                            left: 10,
-                            child: Text(
-                              dateFormatter
-                                  .format(DateTime.parse(this.date))
-                                  .toString(),
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 300,
-                            left: 280,
-                            child: Text(
-                              'Time:',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 320,
-                            left: 280,
-                            child: Text(
-                              this.time,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 250,
-                            left: 270,
-                            child: Text(
-                              'No. Telefon:',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 270,
-                            left: 250,
-                            child: Text(
-                              doc['phone'],
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 340,
-                            left: 160,
-                            child: Text(
-                              'Risk Level',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 360,
-                            left: 160,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: doc['riskStatus'] == 0
-                                    ? Colors.green
-                                    : Colors.red,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Text(
-                                doc['riskStatus'] == 0
-                                    ? 'Low Risk'
-                                    : 'High Risk',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
                           ),
                         ],
                       ),

@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mysj/authentication/wrapper.dart';
-import 'package:mysj/main.dart';
+import 'package:myselamat/authentication/wrapper.dart';
+import 'package:myselamat/main.dart';
 
 class InitialProfileScreen extends StatefulWidget {
   static const routeName = '/initialProfile';
@@ -179,7 +179,6 @@ class _InitialProfileScreenState extends State<InitialProfileScreen> {
                               ),
                               controller: add,
                             ),
-                           
                           ],
                         ),
                       ),

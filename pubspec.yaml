@@ -1,5 +1,5 @@
-name: mysj
-description: Unofficial concept design for the MySejahtera app.
+name: myselamat
+description: Redesign of MySejahtera app for UTAR Mini Project Assignment
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -45,6 +45,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   # firebase: ^9.0.1
   firebase_database: ^7.1.2
+  syncfusion_flutter_datepicker: ^19.2.56
 
 dev_dependencies:
   flutter_test:

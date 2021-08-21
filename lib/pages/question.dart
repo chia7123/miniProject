@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mysj/data/helpers.dart';
-import 'package:mysj/data/question_sets.dart';
+import 'package:myselamat/data/helpers.dart';
+import 'package:myselamat/data/question_sets.dart';
 
 class QuestionPage extends StatefulWidget {
   QuestionPage({Key key}) : super(key: key);
@@ -65,7 +65,7 @@ class _QuestionPageState extends State<QuestionPage> {
                   selectedRadioButton4 +
                   selectedRadioButton5 +
                   selectedRadioButton6;
-                  updateRisk();
+              updateRisk();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(
                 "Your response has been succesfully submitted",

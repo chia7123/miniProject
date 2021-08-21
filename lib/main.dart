@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mysj/authentication/wrapper.dart';
-import 'package:mysj/pages/profile.dart';
-import 'package:mysj/pages/home.dart';
-import 'package:mysj/pages/qrScan.dart';
-import 'package:mysj/pages/travelhistory.dart';
-import 'package:mysj/widgets/bottom_nav_bar_items.dart';
+import 'package:myselamat/authentication/wrapper.dart';
+import 'package:myselamat/pages/profile.dart';
+import 'package:myselamat/pages/home.dart';
+import 'package:myselamat/pages/qrScan.dart';
+import 'package:myselamat/pages/travelhistory.dart';
+import 'package:myselamat/widgets/bottom_nav_bar_items.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future main() async {

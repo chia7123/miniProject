@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
-import 'package:mysj/widgets/mapcard.dart';
+import 'package:myselamat/widgets/mapcard.dart';
 
 class Hotspot extends StatelessWidget {
   final LocationData locationData;
   Hotspot(this.locationData);
 
-  static const routename= '/hotspot';
+  static const routename = '/hotspot';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
