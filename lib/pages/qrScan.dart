@@ -1,11 +1,13 @@
+//import 'dart:html';
+
 import 'package:flutter/material.dart';
-import 'package:mysj/widgets/checkin.dart';
+import 'package:myselamat/widgets/checkin.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'dart:io' show Platform;
+import 'dart:io' as Platform;
 
 class ScanPage extends StatefulWidget {
   @override
@@ -27,7 +29,7 @@ class _ScanPageState extends State<ScanPage> {
   void reassemble() async {
     super.reassemble();
 
-    if (Platform.isAndroid) {
+    if (Platform.Platform.isAndroid) {
       await controller.pauseCamera();
     } else {
       controller.resumeCamera();
@@ -75,6 +77,18 @@ class _ScanPageState extends State<ScanPage> {
 
   void onQRViewCreated(QRViewController controller) async {
     setState(() => this.controller = controller);
+
+    int existingIndex;
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .collection('travel history')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      existingIndex = querySnapshot.docs.length;
+    });
+
     controller.scannedDataStream.listen((barcode) async {
       await controller.pauseCamera();
       this.barcode = barcode;
@@ -91,15 +105,19 @@ class _ScanPageState extends State<ScanPage> {
           ":" +
           now.second.toString());
 
-      await usersCollection
-          .doc(userID)
-          .collection('travel history')
-          .add({"place": '${barcode.code}', "time": timeNow, "date": dateNow});
+      await usersCollection.doc(userID).collection('travel history').add({
+        "id": existingIndex == null ? 0 : existingIndex,
+        "place": '${barcode.code}',
+        "time": timeNow,
+        "date": dateNow
+      });
       Navigator.pop(context);
 
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => CheckIn()));
+          context,
+          MaterialPageRoute(
+              builder: (context) => CheckIn(
+                  date: dateNow, time: timeNow, location: barcode.code)));
     });
   }
-  
 }

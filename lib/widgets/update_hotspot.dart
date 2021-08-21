@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:mysj/main.dart';
+import 'package:myselamat/main.dart';
 
 class UpdateHotspot extends StatefulWidget {
   const UpdateHotspot({Key key}) : super(key: key);
@@ -81,7 +81,7 @@ class _UpdateHotspotState extends State<UpdateHotspot> {
                   onPressed: () {
                     updateHotspotData(
                         int.parse(caseNo.text), int.parse(riskLevel.text));
-                        Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                   child: Text(
                     'Confirm',

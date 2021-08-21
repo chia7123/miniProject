@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mysj/authentication/authentication.dart';
+import 'package:myselamat/authentication/authentication.dart';
 
 class Welcome extends StatelessWidget {
   @override
@@ -20,7 +20,10 @@ class Welcome extends StatelessWidget {
             top: 150,
             child: Text(
               'My Selamat',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold,color: Colors.white),
+              style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ),
           Positioned(
@@ -28,8 +31,10 @@ class Welcome extends StatelessWidget {
             bottom: 30,
             child: TextButton.icon(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Authentication()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Authentication()));
                 },
                 icon: Icon(
                   Icons.arrow_forward_ios,
