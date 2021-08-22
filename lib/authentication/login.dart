@@ -67,6 +67,10 @@ class _LoginState extends State<Login> {
       UserCredential authResult;
       authResult = await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+      _showToast('Sign in successful');
+      Navigator.pop(context);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Wrapper()));
 
       setLoading(false);
     } on SocketException {
@@ -77,12 +81,8 @@ class _LoginState extends State<Login> {
     } catch (e) {
       setLoading(false);
       setMessage(e.message);
-      // TODO: comment this out in production mode
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(errorMessage)));
-      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      //     content: Text(
-      //         "An error has occurred, please contact developer for more information!")));
     }
   }
 
@@ -169,17 +169,7 @@ class _LoginState extends State<Login> {
                   onPressed: () async {
                     if (_formkey.currentState.validate()) {
                       await login(_emailController.text.trim(),
-                              _passwordController.text.trim())
-                          .then((val) {
-                        if (val == null) {
-                          _showToast('Invalid username / password');
-                          return;
-                        }
-                        _showToast('Sign in successful');
-                        Navigator.pop(context);
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Wrapper()));
-                      });
+                          _passwordController.text.trim());
                     }
                   },
                   height: 50,

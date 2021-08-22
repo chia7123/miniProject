@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myselamat/authentication/initialProfile.dart';
-import 'package:myselamat/authentication/login.dart';
 import 'package:myselamat/authentication/welcome.dart';
 import 'package:myselamat/main.dart';
 import 'package:myselamat/pages/admin.dart';
@@ -37,7 +36,8 @@ class Wrapper extends StatelessWidget {
                   }
                   if (doc['name'] == 'admin') {
                     return AdminPage();
-                  } else
+                  } 
+                  else
                     return AppHome();
                 },
               );

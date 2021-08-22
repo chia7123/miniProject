@@ -55,6 +55,6 @@ class TravelHistoryItem extends StatelessWidget {
         },
       ),
     );
-    ;
+    
   }
 }

@@ -205,7 +205,7 @@ class _QuestionPageState extends State<QuestionPage> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Text(
-                      '3. ' + questions[1].title,
+                      '3. ' + questions[2].title,
                       style: TextStyle(
                           color: Color(0xff1c1c1c),
                           fontSize: 20.0,
