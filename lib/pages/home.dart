@@ -136,6 +136,7 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(25.0)),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(height: 25.0),
                 QuickAct(context),

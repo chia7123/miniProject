@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class LatestNews extends StatelessWidget {
   // ignore: non_constant_identifier_names
   Widget NewsItem(
       {@required double height,
-      @required String timestamp,
-      @required RichText textWidget,
+      @required DateTime timestamp,
+      @required Text textWidget,
       @required Image image}) {
     return Container(
       width: 360.0,
@@ -44,7 +46,9 @@ class LatestNews extends StatelessWidget {
                         fontSize: 14.0,
                         color: Colors.black)),
                 TextSpan(
-                    text: timestamp,
+                    text: DateFormat('dd MMMM yyyy hh:mm aaa')
+                        .format(timestamp)
+                        .toString(),
                     style: TextStyle(
                         fontFamily: "MazzardH-Medium",
                         fontSize: 11.0,
@@ -60,17 +64,21 @@ class LatestNews extends StatelessWidget {
               child: textWidget,
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
           Expanded(
             child: Align(alignment: Alignment.bottomCenter, child: image),
-          )
+          ),
         ],
       ),
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Column(
-      children: <Widget>[
+      children: [
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -85,62 +93,39 @@ class LatestNews extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10.0),
-        NewsItem(
-            height: 440.0,
-            timestamp: "10 August 2021 @ 7:02 p.m.",
-            textWidget: RichText(
-                text: TextSpan(children: <TextSpan>[
-              TextSpan(
-                  text:
-                      "Monitoring the symptoms during self-isolation at home.\n\nFollow us at: ",
-                  style: TextStyle(
-                      fontFamily: "MazzardH-SemiBold",
-                      fontSize: 14.0,
-                      color: Colors.black)),
-              TextSpan(
-                  text: "http://www.infosihat.com",
-                  style: TextStyle(
-                      fontFamily: "MazzardH-Medium",
-                      fontSize: 14.0,
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.blue))
-            ])),
-            image: Image.asset("assets/images/2.jpg", width: double.infinity)),
-        SizedBox(height: 20.0),
-        NewsItem(
-            height: 470.0,
-            timestamp: "10 August 2021 @ 7:02 p.m.",
-            textWidget: RichText(
-                text: TextSpan(children: <TextSpan>[
-              TextSpan(
-                  text: "Pecahan kes mengikut negeri setkat 10 August 2021",
-                  style: TextStyle(
-                      fontFamily: "MazzardH-SemiBold",
-                      fontSize: 14.0,
-                      color: Colors.black)),
-            ])),
-            image: Image.asset(
-              "assets/images/1.jpg",
-              width: double.infinity,
-            )),
-        SizedBox(height: 20.0),
-        NewsItem(
-            height: 460.0,
-            timestamp: "10 August 2021 @ 7:02 p.m.",
-            textWidget: RichText(
-                text: TextSpan(children: <TextSpan>[
-              TextSpan(
-                  text: "COVID-19 in Malaysia as of August 2021",
-                  style: TextStyle(
-                      fontFamily: "MazzardH-SemiBold",
-                      fontSize: 14.0,
-                      color: Colors.black)),
-            ])),
-            image: Image.asset(
-              "assets/images/0.jpg",
-              width: double.infinity,
-            ))
+        Container(
+          height: 550,
+          child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('news')
+                  .orderBy('time', descending: true)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                }
+                return ListView.builder(
+                    itemCount: snapshot.data.docs.length,
+                    itemBuilder: (context, index) {
+                      final news = snapshot.data.docs[index];
+                      return Card(
+                        margin: EdgeInsets.all(10),
+                        child: NewsItem(
+                            height: 440.0,
+                            timestamp: news['time'].toDate(),
+                            textWidget: Text(
+                              news['caption'],
+                              style: TextStyle(
+                                  fontFamily: "MazzardH-SemiBold",
+                                  fontSize: 14.0,
+                                  color: Colors.black),
+                            ),
+                            image: Image.network(news['imageUrl'],
+                                width: double.infinity)),
+                      );
+                    });
+              }),
+        ),
       ],
     );
   }

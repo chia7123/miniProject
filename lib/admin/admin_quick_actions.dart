@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myselamat/widgets/update_hotspot.dart';
+import 'package:myselamat/admin/update_hotspot.dart';
+import 'package:myselamat/admin/update_news.dart';
 
 class AdminQuickActions extends StatelessWidget {
   // ignore: non_constant_identifier_names
@@ -60,7 +61,7 @@ class AdminQuickActions extends StatelessWidget {
         Container(
           margin: EdgeInsets.fromLTRB(25.0, 15.0, 25.0, 10.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ActionButton(
                   Icons.assignment, "Update Hotspot Area", Colors.blueAccent,
@@ -68,6 +69,10 @@ class AdminQuickActions extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => UpdateHotspot()));
               }),
+              ActionButton(Icons.notifications, "Update News", Colors.yellow[800],
+                  () {
+                Navigator.pushNamed(context, UpdateNews.routeName);
+              })
             ],
           ),
         )

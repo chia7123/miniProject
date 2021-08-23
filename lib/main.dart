@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:myselamat/admin/update_news.dart';
 import 'package:myselamat/authentication/wrapper.dart';
 import 'package:myselamat/pages/profile.dart';
 import 'package:myselamat/pages/home.dart';
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
       home: Wrapper(),
       routes: {
         "/travelhistory": (context) => TravelHistory(),
+        UpdateNews.routeName:(context)=> UpdateNews(),
       },
     );
   }

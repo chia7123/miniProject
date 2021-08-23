@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:myselamat/authentication/initialProfile.dart';
 import 'package:myselamat/authentication/welcome.dart';
 import 'package:myselamat/main.dart';
-import 'package:myselamat/pages/admin.dart';
+import 'package:myselamat/admin/admin.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key key}) : super(key: key);

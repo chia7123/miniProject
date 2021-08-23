@@ -19,7 +19,10 @@ class CustomView extends StatelessWidget {
                 gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
-                    colors: [ Color.fromRGBO(54, 218, 255, 1),Color.fromRGBO(3, 57, 252, 1)])),
+                    colors: [
+                  Color.fromRGBO(54, 218, 255, 1),
+                  Color.fromRGBO(3, 57, 252, 1)
+                ])),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
