@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:myselamat/authentication/wrapper.dart';
 
 class ProfileCard extends StatelessWidget {
   static var riskColors = [Colors.green, Colors.orange, Colors.red];
@@ -83,6 +85,15 @@ class ProfileCard extends StatelessWidget {
                                     padding: EdgeInsets.only(top: 3.0),
                                     child: Text(doc['ic']),
                                   ),
+                                  Text("Phone No.",
+                                      style: TextStyle(
+                                          color: Color(0xff757575),
+                                          fontSize: 11.5,
+                                          height: 1.8)),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 3.0),
+                                    child: Text(doc['phone']),
+                                  ),
                                   Text("MySej ID",
                                       style: TextStyle(
                                           color: Color(0xff757575),
@@ -135,7 +146,22 @@ class ProfileCard extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 14.0),
                       ),
                     ),
-                  )
+                  ),
+                  TextButton.icon(
+                      onPressed: () {
+                        Fluttertoast.showToast(msg: 'Sign Up Successful');
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => Wrapper()));
+                      },
+                      icon: Icon(
+                        Icons.logout,
+                        color: Colors.red,
+                      ),
+                      label: Text(
+                        'Logout',
+                        style: TextStyle(color: Colors.red),
+                      ))
                 ],
               );
             }
