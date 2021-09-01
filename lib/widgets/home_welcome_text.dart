@@ -41,7 +41,7 @@ class WelcomeBox extends StatelessWidget {
               style: TextStyle(
                 color: Color(0xff3166fd),
                 fontFamily: "MazzardH-Bold",
-                fontSize: 20.0,
+                fontSize: 15.0,
               ),
             )
           ],
