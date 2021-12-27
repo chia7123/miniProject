@@ -206,7 +206,6 @@ class _MapCardState extends State<MapCard> {
                             getData();
                             _markers.clear();
                             _setMarkers(searchLocation[i]);
-
                             _googleMapController.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: myLocation,zoom:15.0)));
                           }
                         }
