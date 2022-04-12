@@ -26,7 +26,7 @@ class WelcomeBox extends StatelessWidget {
         width: 230.0,
         height: 60.0,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(right: 10.0),
