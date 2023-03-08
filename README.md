@@ -11,19 +11,19 @@ by implementing functional modules such as the COVID-19 Status module, COVID-19 
 ## Screenshots
 
 <p align="left">
-        <img src="Screenshots/main.jpg" height="400">
-        <img src="Screenshots/home.png" height="400">
-        <img src="Screenshots/profile.png" height="400">
+        <img src="assets/main.jpg" height="400">
+        <img src="assets/home.png" height="400">
+        <img src="assets/profile.png" height="400">
 </p>
 <p align="left">
-        <img src="Screenshots/login.png" height="400">
-        <img src="Screenshots/high_risk.png" height="400">
-        <img src="Screenshots/low_risk.png" height="400">
+        <img src="assets/login.png" height="400">
+        <img src="assets/high_risk.png" height="400">
+        <img src="assets/low_risk.png" height="400">
 </p>
 <p align="left">
-        <img src="Screenshots/history.png" height="400">
-        <img src="Screenshots/date_range.png" height="400">
-        <img src="Screenshots/assessment.png" height="400">
+        <img src="assets/history.png" height="400">
+        <img src="assets/date_range.png" height="400">
+        <img src="assets/assessment.png" height="400">
 </p>
 
 
