@@ -1,28 +1,35 @@
-# myselamat
 
-A new Flutter project.
+# MySelamat
 
-## Getting Started
+A Flutter application for UCCC2513 Mini Project (UTAR).
 
-This project is a starting point for a Flutter application.
+Developed to manage the COVID-19 outbreak
+by implementing functional modules such as the COVID-19 Status module, COVID-19 Travel History Module, and COVID-19 Hotspot module.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
 
-Attribute:
-        Icon by <a href="https://freeicons.io/profile/714">mithun</a> on <a href="https://freeicons.io">freeicons.io</a>
-    
-	        Icon by <a href="https://freeicons.io/profile/2257">uicon</a> on <a href="https://freeicons.io">freeicons.io</a>
+<p align="left">
+        <img src="Screenshots/main.jpg" height="400">
+        <img src="Screenshots/home.png" height="400">
+        <img src="Screenshots/profile.png" height="400">
+</p>
+<p align="left">
+        <img src="Screenshots/login.png" height="400">
+        <img src="Screenshots/high_risk.png" height="400">
+        <img src="Screenshots/low_risk.png" height="400">
+</p>
+<p align="left">
+        <img src="Screenshots/history.png" height="400">
+        <img src="Screenshots/date_range.png" height="400">
+        <img src="Screenshots/assessment.png" height="400">
+</p>
 
-<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
-        Icon by <a href="https://freeicons.io/profile/3">freeicons</a> on <a href="https://freeicons.io">freeicons.io</a>
-    
-        Icon by <a href="https://freeicons.io/profile/714">mithun</a> on <a href="https://freeicons.io">freeicons.io</a>
-    
+
+## Acknowledgements
+ - [MySejahtera-Redesign](https://mysejahtera.malaysia.gov.my/intro/)
+ - [Design Template](https://github.com/vrevolverrr/mysejahtera)
+
+ 
